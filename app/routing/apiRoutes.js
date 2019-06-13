@@ -16,6 +16,22 @@ module.exports = function (app) {
         res.json(friendsData)
     });
 
-    app.post("/api/friends", function (req, res) {
+    // check the admin password
+    app.post("api/admin/password", (req,res) => {
+
+    });
+
+    // return information on a particular friend
+    app.post("/api/friends/:friend", function (req, res) {
+        let notFound = true;
+        for (let i=0; i < friendsData.length; i++) {
+            if ( friendsData[i].name === req.params.name) {
+                res.json(friendsData[i]);
+                notFound = false;
+            }
+        }
+        if (notFound) {
+            res.json({error:"Could not find friend " + req.params.name});
+        }
     });
 };
