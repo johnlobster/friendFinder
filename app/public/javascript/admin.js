@@ -12,7 +12,7 @@ function htmlTable (dataArr) {
         newRow.append("<td>" + dataArr[i].name + "</td>");
         // add delete button
         newRow.append("<td><button type='button'" +
-            " class='deleteBtn btn btn-sm btn-danger ' data-val='" + i + "'>delete</button></td>");
+            " class='deleteBtn btn btn-sm btn-danger ' data-row='" + i + "'>delete</button></td>");
         newRow.append("<td>" + JSON.stringify(dataArr[i].scores) + "</td>");
         newRow.append("</tr>");
         $("#tableBody").append(newRow);
@@ -45,6 +45,9 @@ $("#submitButton").on("click", (event) => {
             if ( data.success) {
                 // console.log("ok password");
                 // password approved, returns array of all friends data
+                // hide the login
+                $("#authentication").hide();
+                // add table to html
                 htmlTable(data.fData);
             }
             else {
@@ -58,9 +61,30 @@ $("#submitButton").on("click", (event) => {
     }
 
 });
-$(".deleteBtn").on("click", (event) => {
+
+// note => function notation doesn't work here as $(this) is handled incorrectly
+$(document).on("click", ".deleteBtn", function (event) {
     console.log("Delete");
-    console.log($this);
+    let row = $(this).attr("data-row");
+    $.ajax("/api/admin", {
+        type: "DELETE",
+        data: {
+            row: row
+        }
+    }).done((data) => {
+        if (data.success) {
+            // console.log("ok password");
+            // password approved, returns array of all friends data
+            // clear table before adding new data
+            $("#tableBody").empty();
+            htmlTable(data.fData);
+        }
+        else {
+            // failed to delete data
+            console.log("Data row " + row + " was not deleted") ;           
+        }
+    });
+    
 });
 
 

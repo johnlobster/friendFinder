@@ -9,8 +9,10 @@ var surveyQuestions = [
     "Do you like loud music ?",
     "Do you like Qentin Tarantino moves ?",
     "How much do you like chocolate ?",
-    "Are you scared of the dark ?"
-
+    "Are you scared of the dark ?",
+    "Do you like scary movies ?",
+    "Do you like rap ?",
+    "How much do you like Brocolli ?"
 ]
 
 // add all questions into the html form
@@ -57,15 +59,15 @@ $("#submitButton").on("click", (event) => {
     }
     else {
         // get data from radio buttons, iterate over questions
-
+        answerArr = []; // clear array before filling it
         for (let i = 0; i < surveyQuestions.length; i++) {
             answer = $("input[name=radio" + i + "]:checked").val();
             // console.log("Question " + i + " " + answer);
             answer = answer.slice(-1); // get last character
-            answerArr.push(answer);
+            answerArr.push(parseInt(answer)); // convert to a number
         }
         // build object to be posted
-        // not using url for now
+        // not using picture url for now
         postObject = {
             name: name,
             scores: answerArr
@@ -78,6 +80,9 @@ $("#submitButton").on("click", (event) => {
         }).done( (data) => {
             // set up friend result modal
             $("#newFriendName").text(data.name);
+            $("#modalFriendName").text(data.name);
+            // display pictures
+
             // display friend result modal
             $("#newFriendModal").modal({
                 show: true
