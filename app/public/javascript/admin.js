@@ -33,6 +33,7 @@ $("#submitButton").on("click", (event) => {
 
     }
     else {
+
         // post to api and receive response from server
 
         $.ajax("/api/admin/password", {
@@ -64,7 +65,6 @@ $("#submitButton").on("click", (event) => {
 
 // note => function notation doesn't work here as $(this) is handled incorrectly
 $(document).on("click", ".deleteBtn", function (event) {
-    console.log("Delete");
     let row = $(this).attr("data-row");
     $.ajax("/api/admin", {
         type: "DELETE",
