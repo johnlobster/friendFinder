@@ -33,6 +33,8 @@ clone the master repo, cd to friendFinder directory
 
 Browse to `http://localhost:8080/`
 
+Static files are served from app/public.
+
 #### User/Admin guide
 
 ##### user
