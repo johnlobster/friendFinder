@@ -69,13 +69,10 @@ module.exports = function (app) {
     // submit new friend and return best match
     app.post("/api/newfriend", (req,res) => {
         // having a lot of trouble getting scores back as an array of numbers, so convert manually
-        let newFriend = { name: req.body.name, scores: []};
-        // console.log(newFriend);
-        // console.log(req.body);
+        let newFriend = { name: req.body.name, scores: [], imageUrl: req.body.imageUrl};
         for( let i=0; i < 10 ; i++) {
             newFriend.scores.push(parseInt(req.body.scores[i]));
         }
-        console.log(newFriend);
         // console.log("Request\n-------------");
         // console.log(req);
         let matchedFriend = findFriend( newFriend, friendsData);

@@ -9,6 +9,7 @@ Notes:
 
 #### Technologies and node modules
 * javascript
+* jQuery
 * GitHub
 * node.js
 * express
@@ -18,7 +19,7 @@ Notes:
 
 #### Deployed
 
-<https://heroku>
+<https://guarded-scrubland-84294.herokuapp.com/>
 
 Note - heroku apps are paused if not in use, will take 10-15 seconds for it to restart
 
@@ -70,4 +71,6 @@ Results can be found in the results sub-directory.
 `results/README.txt` has details
 
 #### Design notes
+
+* Had a problem with passing an array of numbers (scores from survey) back to server. Parsing at the server end created an array of strings. No idea why this happened, and could not find any answers through google. Fixed by manually parsing the array of strings and converting to integers. Solution is in `apiRoutes.js`
 
