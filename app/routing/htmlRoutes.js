@@ -8,7 +8,7 @@ const express = require("express");
 module.exports = function (app) {
 
     // get static files
-    app.use(express.static('../public'));
+    app.use(express.static('app/public'));
     
     // get a list of all friends for administration. Page will prompt for
     // password, then make an api request to get all the friends
