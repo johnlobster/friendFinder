@@ -7,7 +7,19 @@
 var friendsData = require( "../data/friends");
 
 function findFriend( friend, allFriends) {
-    return allFriends[0];
+    let minCompatability = 1000; // arbitrarily high number
+    let compatabilityIndex = 0;
+    for( let i=0 ; i < allFriends.length ; i++ ) {
+        let compatability = 0;
+        for( let j=0; j < 10 ; j++ ) {
+             compatability += Math.abs(friend.scores[j] - allFriends[i].scores[j])
+        }
+        if (compatability < minCompatability) {
+            minCompatability = compatability;
+            compatabilityIndex = i;
+        }
+    }
+    return allFriends[compatabilityIndex];
 }
 
 module.exports = function (app) {
@@ -23,7 +35,7 @@ module.exports = function (app) {
         if (req.body.password === "password") {
             // valid password
             console.log("Correct password");
-            res.json({success: true, data: friendsData});
+            res.json({success: true, fData: friendsData});
         } else {
             res.json({success: false});
         }
@@ -47,8 +59,9 @@ module.exports = function (app) {
     // submit new friend and return best match
     app.post("/api/newfriend", (req,res) => {
         let newFriend = req.body;
-        console.log(newFriend);
         let matchedFriend = findFriend( newFriend, friendsData);
+        // add the new friend of finding the match, so doesn't match themself
+        friendsData.push(newFriend);
         res.json( matchedFriend);
 
     });

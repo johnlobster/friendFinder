@@ -47,7 +47,7 @@
                 <div id="authentication" class="col-12 col-md-8">
                     <div class="row">
                         <h3 class="p-2"><span id="warningSpan" style="color:red" display="none"></span> 
-                        Please log in
+                        Please log in to access admin data
                         </h3>
                     </div>
                     <div class="row">
@@ -68,12 +68,22 @@
                 </div>
                 <div id="friendsTable" display="none" class="col-12 col-md-8">
                     <div class="row">
-                        <h3 class="p-2">Data on all friends
-                        </h3>
+                        <h3 class="p-2">Data on all friends</h3>
                     </div>
                     <div class="row">
-                        <div id="fTable" class="col-12 col-md-8 mb-4">
-                            
+                        <div class="col-12 col-md-8 mb-4">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Delete</th>
+                                        <th>Scores</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 
