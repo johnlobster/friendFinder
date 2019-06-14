@@ -13,6 +13,8 @@ function htmlTable (dataArr) {
         // add delete button
         newRow.append("<td><button type='button'" +
             " class='deleteBtn btn btn-sm btn-danger ' data-row='" + i + "'>delete</button></td>");
+        // image
+        newRow.append("<td><img src=\"" + dataArr[i].imageUrl + "\" alt=\"" + dataArr[i].name + " picture\" style=\"height: 3rem;\"></td>");
         newRow.append("<td>" + JSON.stringify(dataArr[i].scores) + "</td>");
         newRow.append("</tr>");
         $("#tableBody").append(newRow);
