@@ -20,6 +20,8 @@ Notes:
 
 <https://heroku>
 
+Note - heroku apps are paused if not in use, will take 10-15 seconds for it to restart
+
 #### Github repository
 <https://github.com/johnlobster/friendFinder.git>
 
@@ -40,9 +42,18 @@ Static files are served from app/public.
 ##### user
 From the front page press the survey button, this will take you to the survey page
 
-Fill in name (required) and picture url (not required). There are 10 questions to answer, 
+Fill in name (required) and picture url (not required). If picture url is not supplied, then you get an image of Shrek's donkey. There are 10 questions to answer, 
 the answers are controlled by radio buttons (default is 1). Submit will then send your data to the server and
 a popup modal will then show the friend that matches best.
+
+Picture urls are tricky to find - many images are part of an anchor that takes the user to a different web page, so the url will not show as a picture. To give users some pictures to try, the following urls will work
+```
+/images/shrek.jpg
+/images/fiona.jpg
+/images/donkey.jpg
+/images/farquaad.jpg
+
+```
 
 ##### admin
 For admin, press the admin button at the bottom of each page. This sends you to /admin. And a name and password must be entered to view all the friend data. 

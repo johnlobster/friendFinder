@@ -70,8 +70,8 @@ module.exports = function (app) {
     app.post("/api/newfriend", (req,res) => {
         // having a lot of trouble getting scores back as an array of numbers, so convert manually
         let newFriend = { name: req.body.name, scores: []};
-        console.log(newFriend);
-        console.log(req.body);
+        // console.log(newFriend);
+        // console.log(req.body);
         for( let i=0; i < 10 ; i++) {
             newFriend.scores.push(parseInt(req.body.scores[i]));
         }

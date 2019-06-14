@@ -76,7 +76,7 @@
 
     <!-- modal is used to display results of friend matching -->
     <div class="modal fade" id="newFriendModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Your new friend is  <span id="newFriendName"></span></h4><br>
@@ -84,21 +84,26 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
-                    <div class="container">
-                        <div class="row"></div>
-                            <div class="col-6">
-                                <h5>You</h5>
-                            </div>
-                            <div class="col-6">
-                                <h5 id="modalFriendName"></h5>
-                            </div>
+                    <div class="container-fluid"></div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h5>You (<span id="modalYou"></span>)</h5>
+                            <img id = "modalYourPicture" src="/images/shrek.jpg" alt="Your picture" style="max-width: 90%;">
+                        </div>
+                        <div class="col-6">
+                            <h5 id="modalFriendName"></h5>
+                            <img id="modalFriendPicture" src="/images/shrek.jpg" alt="Your friend's picture"style="max-width: 90%;">
+                            
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button btn-sm" id="closeInstructions2" class="btn btn-secondary"
-                            data-dismiss="modal">Close</button>
                     </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button btn-sm" id="closeInstructions2" class="btn btn-secondary"
+                    data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

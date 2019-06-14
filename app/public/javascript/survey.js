@@ -45,7 +45,7 @@ var answer = "";
 var answerArr = [];
 var name="";
 var postObject = {};
-var pictureUrl = "";
+var imageUrl = "";
 
 // respond to survey button, post survey results to api
 $("#submitButton").on("click", (event) => {
@@ -66,11 +66,18 @@ $("#submitButton").on("click", (event) => {
             answer = answer.slice(-1); // get last character
             answerArr.push(parseInt(answer)); // convert to a number
         }
+        // get image
+        imageUrl = $("#pictureUrlInput").val().trim();
+        if( imageUrl === "") {
+            // no image supplied, use donkey instead
+            imageUrl= "/images/donkey.jpg"
+        }
+        
         // build object to be posted
-        // not using picture url for now
         postObject = {
             name: name,
-            scores: answerArr
+            scores: answerArr,
+            imageUrl: imageUrl
         }
 
         // post to api and receive response from server
@@ -81,7 +88,10 @@ $("#submitButton").on("click", (event) => {
             // set up friend result modal
             $("#newFriendName").text(data.name);
             $("#modalFriendName").text(data.name);
+            $("#modalYou").text(name);
             // display pictures
+            $("#modalYourPicture").attr("src", imageUrl)
+            $("modalFriendPicture").attr("src", data.imageUrl);
 
             // display friend result modal
             $("#newFriendModal").modal({
