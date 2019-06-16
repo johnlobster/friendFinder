@@ -83,7 +83,9 @@ $("#submitButton").on("click", (event) => {
         // post to api and receive response from server
         $.ajax("/api/newfriend", {
             type: "POST",
-            data: postObject
+            data: JSON.stringify(postObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
         }).done( (data) => {
             // set up friend result modal
             $("#newFriendName").text(data.name);

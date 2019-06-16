@@ -68,11 +68,28 @@ module.exports = function (app) {
 
     // submit new friend and return best match
     app.post("/api/newfriend", (req,res) => {
+        // JSON problem was due to not sending JSON encoding information in the http header
+        // in the ajax POST in survey.js
+        // when that is set, the middleware parses without issues
+        
+        // 3 ways to correct JSON issue. Middleware parsing array of int into array of strings
+        // get directly from http and convert
+        // console.log(req);
+        // console.log("---------------\n");
+        // console.log(req.body);
+        var newFriend= req.body;
+        // console.log(req.body.scores);
+        // console.log(typeof(req.body.scores));
+        // 2 fix it but use map()
+        // var newScores = req.body.scores.map( (x) => {return parseInt(x)});
+        // let newFriend = { name: req.body.name, scores: newScores, imageUrl: req.body.imageUrl };
+
+        // 3 manual fix using for loop
         // having a lot of trouble getting scores back as an array of numbers, so convert manually
-        let newFriend = { name: req.body.name, scores: [], imageUrl: req.body.imageUrl};
-        for( let i=0; i < 10 ; i++) {
-            newFriend.scores.push(parseInt(req.body.scores[i]));
-        }
+        // let newFriend = { name: req.body.name, scores: [], imageUrl: req.body.imageUrl};
+        // for( let i=0; i < 10 ; i++) {
+        //     newFriend.scores.push(parseInt(req.body.scores[i]));
+        // }
         // console.log("Request\n-------------");
         // console.log(req);
         let matchedFriend = findFriend( newFriend, friendsData);
