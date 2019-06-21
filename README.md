@@ -74,3 +74,6 @@ Results can be found in the results sub-directory.
 
 * Had a problem with passing an array of numbers (scores from survey) back to server. Parsing at the server end created an array of strings. No idea why this happened, and could not find any answers through google. Fixed by manually parsing the array of strings and converting to integers. Solution is in `apiRoutes.js`
 
+Found the root cause of the above problem. If you send JSON in the body of the message, have to set headers to mark the data as JSON.
+
+
